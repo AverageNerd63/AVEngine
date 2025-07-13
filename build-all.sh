@@ -1,27 +1,27 @@
 #!/bin/bash
-# Build script for Engine
+# Build script for rebuilding everything
 set echo on
 
-echo "Build Everything..."
+echo "Building everything..."
 
-pushd engine
+
+pushd Engine
 source build.sh
 popd
 
 ERRORLEVEL=$?
-if [$ERRORLEVEL -no 0]
+if [ $ERRORLEVEL -ne 0 ]
 then
-echo "Error:"$ERRORLEVEL && extension
+echo "Error:"$ERRORLEVEL && exit
 fi
 
 pushd testbed
 source build.sh
 popd
-
 ERRORLEVEL=$?
-if [$ERRORLEVEL -no 0]
+if [ $ERRORLEVEL -ne 0 ]
 then
-echo "Error:"$ERRORLEVEL && extension
+echo "Error:"$ERRORLEVEL && exit
 fi
 
-echo "All assemblies built successfully"
+echo "All assemblies built successfully."

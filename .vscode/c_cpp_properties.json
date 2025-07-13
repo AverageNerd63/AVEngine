@@ -3,14 +3,14 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/engine/src/**",
+                "${workspaceFolder}/Engine/src/**",
                 "${VULKAN_SDK}/include"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE",
-                "AEXPORT"
+                "AVEXPORT"
             ],
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c17",
@@ -20,14 +20,14 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/engine/src/**",
+                "${workspaceFolder}/Engine/src/**",
                 "${VULKAN_SDK}/include"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE",
-                "AEXPORT"
+                "AVEXPORT"
             ],
             "windowsSdkVersion": "10.0.18362.0",
             "compilerPath": "C:\\Program Files\\LLVM\\bin\\clang.exe",

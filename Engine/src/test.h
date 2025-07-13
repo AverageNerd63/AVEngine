@@ -2,4 +2,4 @@
 
 #include "defines.h"
 
-AAPI void print_int(i32 i);
+AVAPI void print_int(i32 i);

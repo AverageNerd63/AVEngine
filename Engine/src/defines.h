@@ -73,18 +73,18 @@ STATIC_ASSERT(sizeof(f64) == 8, "Expected f8 to be size of 8 byte");
 #error "Unkown Error"
 #endif
 
-#ifdef AEXPORT
+#ifdef AVEXPORT
 // Exports
 #ifdef _MSC_VER
-#define AAPI __declspec(dllexport)
+#define AVAPI __declspec(dllexport)
 #else
-#define AAPI __attribute__((visibility("default")))
+#define AVAPI __attribute__((visibility("default")))
 #endif
 #else
 // Imports
 #ifdef _MSC_VER
-#define AAPI __declspec(dllimport)
+#define AVAPI __declspec(dllimport)
 #else
-#define AAPI
+#define AVAPI
 #endif
 #endif
