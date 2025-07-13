@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(Window) Launch",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/testbed.exe",
+            "args": [],
+            "stopAtEntry": false, 
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "console": "newExternalWindow",
+        },
+        {
+            "name": "(Linux) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/testbed",
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/bin/",
+            "environment": [],
+        }
+    ]
+}
