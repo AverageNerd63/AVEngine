@@ -13,7 +13,7 @@ int main(void) {
     AVTRACE("A test message: %f", 3.14f);
 
     platform_state state;
-    if(platform_startup(&state, "Average Engine Testbed", 100, 100, 1280, 720)) {
+    if(platform_startup(&state, "Kohi Engine Testbed", 100, 100, 1280, 720)) {
         while(TRUE) {
             platform_pump_messages(&state);
         }
