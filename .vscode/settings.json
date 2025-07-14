@@ -59,9 +59,16 @@
         "windowsx.h": "c",
         "vulkan_platform.h": "c",
         "renderer_frontend.h": "c",
+        "iosfwd": "c",
+        "tuple": "cpp",
+        "utility": "cpp",
         "*.rh": "c",
         "platform.h": "c",
         "xlib-xcb.h": "c",
-        "xlib.h": "c"
-    }
+        "xlib.h": "c",
+        "xlocale": "c",
+        "xstring": "c",
+        "darray.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }
