@@ -7,7 +7,7 @@
 #include <string.h>
 #include <stdarg.h>
 
-b8 intialize_logging() {
+b8 initialize_logging() {
     // TODO: Create log File
     return TRUE;
 }
