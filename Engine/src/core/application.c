@@ -4,9 +4,9 @@
 #include "logger.h"
 
 #include "platform/platform.h"
+#include "core/avmemory.h"
 
-typedef struct application_state
-{
+typedef struct application_state {
     game* game_inst;
     b8 is_running;
     b8 is_suspended;
@@ -60,17 +60,19 @@ b8 application_create(game* game_inst) {
     app_state.game_inst->on_resize(app_state.game_inst, app_state.width, app_state.height);
 
     initialized = TRUE;
-    
+
     return TRUE;
 }
 
 b8 application_run() {
+    AVINFO(get_memory_usage_str());
+
     while (app_state.is_running) {
-        if(!platform_pump_messages(&app_state.platform)) {
+        if (!platform_pump_messages(&app_state.platform)) {
             app_state.is_running = FALSE;
         }
 
-        if(!app_state.is_suspended) {
+        if (!app_state.is_suspended) {
             if (!app_state.game_inst->update(app_state.game_inst, (f32)0)) {
                 AVFATAL("Game update failed, shutting down.");
                 app_state.is_running = FALSE;
