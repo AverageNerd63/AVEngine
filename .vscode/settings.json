@@ -62,6 +62,7 @@
         "iosfwd": "c",
         "tuple": "cpp",
         "utility": "cpp",
+        "avmemory.h": "c",
         "*.rh": "c",
         "platform.h": "c",
         "xlib-xcb.h": "c",
@@ -69,6 +70,5 @@
         "xlocale": "c",
         "xstring": "c",
         "darray.h": "c"
-    },
-    "C_Cpp.errorSquiggles": "disabled"
+    }
 }
