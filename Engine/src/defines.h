@@ -46,25 +46,24 @@ STATIC_ASSERT(sizeof(f64) == 8, "Expected f8 to be size of 8 byte");
 
 // Platform detection
 #if defined(WIN32) || defined (_WIN32) || defined (__WIN32__)
-#define APLATFORM_WINDOWS 1
+#define AVPLATFORM_WINDOWS 1
 #ifndef _WIN64
 #error "64-bit is required on Windows!"
 #endif
 #elif defined(__linux__) || defined (__gnu_linux__)
-#define APLATFORM_LINUX 1
+#define AVPLATFORM_LINUX 1
 #if defined(__ANDROID__)
-#define APLATFORM_ANDROID 1
+#define AVPLATFORM_ANDROID 1
 #endif
 #elif defined(__unix__)
-#define APLATFORM_UNIX 1
+#define AVPLATFORM_UNIX 1
 #elif __APPLE__
-#define APLATFORM_APPLE 1
+#define AVPLATFORM_APPLE 1
 #include <TargetCondionals.h>
 #if TARGET_IPHONE_SIMULATOR
-#define APLATFORM_IOS 1
-#define APLATFORM_IOS_SIMULATOR 1
+#define AVPLATFORM_IOS_SIMULATOR 1
 #elif TARGET_OS_IPHONE
-#define APLATFORM_IOS 1
+#define AVPLATFORM_IOS 1
 #elif TARGET_OS_MAC
 #else
 #error "Unkown Apple Platform"
