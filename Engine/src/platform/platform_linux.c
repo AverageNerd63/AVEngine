@@ -1,7 +1,7 @@
 #include "platform.h"
 
 // Linux platform layer.
-#if AVPLATFORM_LINUX
+#if KPLATFORM_LINUX
 
 #include "core/logger.h"
 #include "core/event.h"
@@ -26,11 +26,11 @@
 #include <stdio.h>
 #include <string.h>
 
+// For surface creation
 #define VK_USE_PLATFORM_XCB_KHR
 #include <vulkan/vulkan.h>
-#include "renderer/renderer_types.inl"
+#include "renderer/vulkan/vulkan_types.inl"
 
-// For surface creation
 typedef struct internal_state {
     Display* display;
     xcb_connection_t* connection;
@@ -65,7 +65,7 @@ b8 platform_startup(
     state->connection = XGetXCBConnection(state->display);
 
     if (xcb_connection_has_error(state->connection)) {
-        AVFATAL("Failed to connect to X server via XCB.");
+        KFATAL("Failed to connect to X server via XCB.");
         return FALSE;
     }
 
@@ -165,7 +165,7 @@ b8 platform_startup(
     // Flush the stream
     i32 stream_result = xcb_flush(state->connection);
     if (stream_result <= 0) {
-        AVFATAL("An error occurred when flusing the stream: %d", stream_result);
+        KFATAL("An error occurred when flusing the stream: %d", stream_result);
         return FALSE;
     }
 
@@ -316,7 +316,7 @@ void platform_sleep(u64 ms) {
 }
 
 void platform_get_required_extension_names(const char ***names_darray) {
-    darray_push(*names_darray, &"VK_KHR_xcb_surface");
+    darray_push(*names_darray, &"VK_KHR_xcb_surface");  // VK_KHR_xlib_surface?
 }
 
 // Surface creation for Vulkan
