@@ -113,7 +113,7 @@ b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* app
 
     PFN_vkCreateDebugUtilsMessengerEXT func =
         (PFN_vkCreateDebugUtilsMessengerEXT)vkGetInstanceProcAddr(context.instance, "vkCreateDebugUtilsMessengerEXT");
-    KASSERT_MSG(func, "Failed to create debug messenger!");
+    AVASSERT_MSG(func, "Failed to create debug messenger!");
     VK_CHECK(func(context.instance, &debug_create_info, context.allocator, &context.debug_messenger));
     AVDEBUG("Vulkan debugger created.");
 #endif
