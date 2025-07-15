@@ -69,6 +69,7 @@
         "xlib.h": "c",
         "xlocale": "c",
         "xstring": "c",
-        "darray.h": "c"
+        "darray.h": "c",
+        "vulkan_swapchain.h": "c"
     }
 }
