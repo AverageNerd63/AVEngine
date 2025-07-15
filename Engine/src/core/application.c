@@ -1,15 +1,15 @@
 #include "application.h"
 #include "game_types.h"
-#include "core/event.h"
-#include "core/input.h"
-#include "core/clock.h"
-
-#include "renderer/renderer_frontend.h"
 
 #include "logger.h"
 
 #include "platform/platform.h"
 #include "core/avmemory.h"
+#include "core/event.h"
+#include "core/input.h"
+#include "core/clock.h"
+
+#include "renderer/renderer_frontend.h"
 
 typedef struct application_state {
     game* game_inst;
@@ -72,8 +72,8 @@ b8 application_create(game* game_inst) {
     }
 
     // Renderer startup
-    if (!renderer_initalize(game_inst->app_config.name, &app_state.platform)) {
-        AVFATAL("Game failed to initialize.");
+    if (!renderer_initialize(game_inst->app_config.name, &app_state.platform)) {
+        AVFATAL("Failed to initialize renderer. Aborting application.");
         return FALSE;
     }
 
@@ -106,10 +106,10 @@ b8 application_run() {
         }
 
         if (!app_state.is_suspended) {
-            // Update clock and get delta time
+            // Update clock and get delta time.
             clock_update(&app_state.clock);
             f64 current_time = app_state.clock.elapsed;
-            f64 delta = (current_time - app_state.clock.elapsed);
+            f64 delta = (current_time - app_state.last_time);
             f64 frame_start_time = platform_get_absolute_time();
 
             if (!app_state.game_inst->update(app_state.game_inst, (f32)delta)) {
@@ -125,7 +125,7 @@ b8 application_run() {
                 break;
             }
 
-            // TODO: Refactor Packet creation
+            // TODO: refactor packet creation
             render_packet packet;
             packet.delta_time = delta;
             renderer_draw_frame(&packet);
@@ -147,13 +147,14 @@ b8 application_run() {
 
                 frame_count++;
             }
-            
+
             // NOTE: Input update/state copying should always be handled
             // after any input should be recorded; I.E. before this line.
             // As a safety, input is the last thing to be updated before
             // this frame ends.
             input_update(delta);
 
+            // Update last time
             app_state.last_time = current_time;
         }
     }

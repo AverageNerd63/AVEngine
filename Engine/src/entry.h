@@ -30,7 +30,7 @@ int main(void) {
 
     // Initialization.
     if (!application_create(&game_inst)) {
-        AVINFO("Application failed to create!.");
+        AVFATAL("Application failed to create!.");
         return 1;
     }
 

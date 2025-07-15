@@ -2,26 +2,26 @@
 #include "asserts.h"
 #include "platform/platform.h"
 
-// Tempory
+// TODO: temporary
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
 
 b8 initialize_logging() {
-    // TODO: Create log File
+    // TODO: create log file.
     return TRUE;
 }
 
 void shutdown_logging() {
-    // TODO: Cleanup logging/write queue entries
+    // TODO: cleanup logging/write queued entries.
 }
 
 void log_output(log_level level, const char* message, ...) {
-    const char* level_strings[6] = {"[FATAL]: ", "[ERROR]: ", "[WARN]: ", "[INFO]: ", "[LOG]: ", "[TRACE]: "};
+    const char* level_strings[6] = {"[FATAL]: ", "[ERROR]: ", "[WARN]:  ", "[INFO]:  ", "[DEBUG]: ", "[TRACE]: "};
     b8 is_error = level < LOG_LEVEL_WARN;
 
-    // Technically imposes a 32k character limit on a single log entry, but
-    // DON'T DO THAT
+    // Technically imposes a 32k character limit on a single log entry, but...
+    // DON'T DO THAT!
     const i32 msg_length = 32000;
     char out_message[msg_length];
     memset(out_message, 0, sizeof(out_message));
@@ -38,7 +38,7 @@ void log_output(log_level level, const char* message, ...) {
     char out_message2[msg_length];
     sprintf(out_message2, "%s%s\n", level_strings[level], out_message);
 
-    // Platform specific output
+    // Platform-specific output.
     if (is_error) {
         platform_console_write_error(out_message2, level);
     } else {

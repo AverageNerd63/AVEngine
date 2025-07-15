@@ -4,8 +4,8 @@
 
 struct game;
 
-typedef struct application_config
-{
+// Application configuration.
+typedef struct application_config {
     // Window starting position x axis, if applicable.
     i16 start_pos_x;
 
@@ -21,6 +21,7 @@ typedef struct application_config
     // The application name used in windowing, if applicable.
     char* name;
 } application_config;
+
 
 AVAPI b8 application_create(struct game* game_inst);
 

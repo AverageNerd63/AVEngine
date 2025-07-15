@@ -131,7 +131,7 @@ b8 select_physical_device(vulkan_context* context) {
             &requirements,
             &queue_info,
             &context->device.swapchain_support);
-        
+
         if (result) {
             AVINFO("Selected device: '%s'.", properties.deviceName);
             // GPU type, etc.
@@ -349,4 +349,3 @@ b8 physical_device_meets_requirements(
 
     return FALSE;
 }
-

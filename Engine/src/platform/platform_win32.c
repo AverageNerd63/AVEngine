@@ -1,18 +1,20 @@
 #include "platform/platform.h"
 
+// Windows platform layer.
 #if AVPLATFORM_WINDOWS
+
 #include "core/logger.h"
 #include "core/input.h"
 
 #include "containers/darray.h"
 
 #include <windows.h>
-#include <windowsx.h>
+#include <windowsx.h>  // param input extraction
 #include <stdlib.h>
 
-// For Surface Creation
+// For surface creation
 #include <vulkan/vulkan.h>
-#include "vulkan/vulkan_win32.h"
+#include <vulkan/vulkan_win32.h>
 #include "renderer/vulkan/vulkan_types.inl"
 
 typedef struct internal_state {
@@ -28,13 +30,12 @@ static LARGE_INTEGER start_time;
 LRESULT CALLBACK win32_process_message(HWND hwnd, u32 msg, WPARAM w_param, LPARAM l_param);
 
 b8 platform_startup(
-    platform_state* plat_state,
-    const char* application_name,
+    platform_state *plat_state,
+    const char *application_name,
     i32 x,
     i32 y,
     i32 width,
-    i32 height)
-{
+    i32 height) {
     plat_state->internal_state = malloc(sizeof(internal_state));
     internal_state *state = (internal_state *)plat_state->internal_state;
 
@@ -42,9 +43,9 @@ b8 platform_startup(
 
     // Setup and register window class.
     HICON icon = LoadIcon(state->h_instance, IDI_APPLICATION);
-    WNDCLASS wc;
+    WNDCLASSA wc;
     memset(&wc, 0, sizeof(wc));
-    wc.style = CS_DBLCLKS; // Get double clicks
+    wc.style = CS_DBLCLKS;  // Get double-clicks
     wc.lpfnWndProc = win32_process_message;
     wc.cbClsExtra = 0;
     wc.cbWndExtra = 0;
@@ -52,7 +53,7 @@ b8 platform_startup(
     wc.hIcon = icon;
     wc.hCursor = LoadCursor(NULL, IDC_ARROW);  // NULL; // Manage the cursor manually
     wc.hbrBackground = NULL;                   // Transparent
-    wc.lpszClassName = "average_window_class";
+    wc.lpszClassName = "kohi_window_class";
 
     if (!RegisterClassA(&wc)) {
         MessageBoxA(0, "Window registration failed", "Error", MB_ICONEXCLAMATION | MB_OK);
@@ -90,14 +91,14 @@ b8 platform_startup(
     window_height += border_rect.bottom - border_rect.top;
 
     HWND handle = CreateWindowExA(
-        window_ex_style, "average_window_class", application_name,
+        window_ex_style, "kohi_window_class", application_name,
         window_style, window_x, window_y, window_width, window_height,
         0, 0, state->h_instance, 0);
 
     if (handle == 0) {
         MessageBoxA(NULL, "Window creation failed!", "Error!", MB_ICONEXCLAMATION | MB_OK);
 
-        AVFATAL("Window creation failed!");
+    AVFATAL("Window creation failed!");
         return FALSE;
     } else {
         state->hwnd = handle;
@@ -191,6 +192,10 @@ void platform_sleep(u64 ms) {
     Sleep(ms);
 }
 
+void platform_get_required_extension_names(const char ***names_darray) {
+    darray_push(*names_darray, &"VK_KHR_win32_surface");
+}
+
 // Surface creation for Vulkan
 b8 platform_create_vulkan_surface(platform_state *plat_state, vulkan_context *context) {
     // Simply cold-cast to the known type.
@@ -208,11 +213,6 @@ b8 platform_create_vulkan_surface(platform_state *plat_state, vulkan_context *co
 
     context->surface = state->surface;
     return TRUE;
-}
-
-
-void platform_get_required_extension_names(const char ***names_darray) {
-    darray_push(*names_darray, &"VK_KHR_win32_surface");
 }
 
 LRESULT CALLBACK win32_process_message(HWND hwnd, u32 msg, WPARAM w_param, LPARAM l_param) {
@@ -295,4 +295,4 @@ LRESULT CALLBACK win32_process_message(HWND hwnd, u32 msg, WPARAM w_param, LPARA
     return DefWindowProcA(hwnd, msg, w_param, l_param);
 }
 
-#endif
+#endif  // KPLATFORM_WINDOWS

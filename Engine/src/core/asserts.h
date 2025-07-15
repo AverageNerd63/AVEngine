@@ -2,10 +2,10 @@
 
 #include "defines.h"
 
-// Disable assertion by commenting out the line below
-#define AVASSERTIONS_ENABLED
+// Disable assertions by commenting out the below line.
+#define KASSERTIONS_ENABLED
 
-#ifdef AVASSERTIONS_ENABLED
+#ifdef KASSERTIONS_ENABLED
 #if _MSC_VER
 #include <intrin.h>
 #define debugBreak() __debugbreak()

@@ -19,7 +19,7 @@ typedef struct renderer_backend {
     void (*resized)(struct renderer_backend* backend, u16 width, u16 height);
 
     b8 (*begin_frame)(struct renderer_backend* backend, f32 delta_time);
-    b8 (*end_frame)(struct renderer_backend* backend, f32 delta_time);
+    b8 (*end_frame)(struct renderer_backend* backend, f32 delta_time);    
 } renderer_backend;
 
 typedef struct render_packet {

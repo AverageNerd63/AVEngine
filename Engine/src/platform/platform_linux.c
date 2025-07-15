@@ -1,7 +1,7 @@
 #include "platform.h"
 
 // Linux platform layer.
-#if KPLATFORM_LINUX
+#if AVPLATFORM_LINUX
 
 #include "core/logger.h"
 #include "core/event.h"
@@ -65,7 +65,7 @@ b8 platform_startup(
     state->connection = XGetXCBConnection(state->display);
 
     if (xcb_connection_has_error(state->connection)) {
-        KFATAL("Failed to connect to X server via XCB.");
+        AVFATAL("Failed to connect to X server via XCB.");
         return FALSE;
     }
 
@@ -165,7 +165,7 @@ b8 platform_startup(
     // Flush the stream
     i32 stream_result = xcb_flush(state->connection);
     if (stream_result <= 0) {
-        KFATAL("An error occurred when flusing the stream: %d", stream_result);
+        AVFATAL("An error occurred when flusing the stream: %d", stream_result);
         return FALSE;
     }
 
@@ -334,7 +334,7 @@ b8 platform_create_vulkan_surface(platform_state *plat_state, vulkan_context *co
         context->allocator,
         &state->surface);
     if (result != VK_SUCCESS) {
-        KFATAL("Vulkan surface creation failed.");
+        AVFATAL("Vulkan surface creation failed.");
         return FALSE;
     }
 

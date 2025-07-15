@@ -13,6 +13,6 @@ void clock_start(clock* clock) {
     clock->elapsed = 0;
 }
 
-void clock_stop (clock* clock) {
+void clock_stop(clock* clock) {
     clock->start_time = 0;
 }

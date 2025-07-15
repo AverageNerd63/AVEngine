@@ -6,8 +6,8 @@
 #include <vulkan/vulkan.h>
 
 // Checks the given expression's return value against VK_SUCCESS.
-#define VK_CHECK(expr)                \
-    {                                 \
+#define VK_CHECK(expr)               \
+    {                                \
         AVASSERT(expr == VK_SUCCESS); \
     }
 
@@ -37,12 +37,9 @@ typedef struct vulkan_context {
     VkAllocationCallbacks* allocator;
     VkSurfaceKHR surface;
 
-#if defined(_DEBUG) 
+#if defined(_DEBUG)
     VkDebugUtilsMessengerEXT debug_messenger;
 #endif
 
     vulkan_device device;
 } vulkan_context;
-
-
-

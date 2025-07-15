@@ -7,9 +7,9 @@
 #define LOG_DEBUG_ENABLED 1
 #define LOG_TRACE_ENABLED 1
 
-// Disable debug and trace logging for relase builds.
-#if AVRELEASE == 1
-#define LOG_DEBUG_ENABLE 0
+// Disable debug and trace logging for release builds.
+#if KRELEASE == 1
+#define LOG_DEBUG_ENABLED 0
 #define LOG_TRACE_ENABLED 0
 #endif
 
@@ -27,38 +27,42 @@ void shutdown_logging();
 
 AVAPI void log_output(log_level level, const char* message, ...);
 
-// Log a fatal-level message.
+// Logs a fatal-level message.
 #define AVFATAL(message, ...) log_output(LOG_LEVEL_FATAL, message, ##__VA_ARGS__);
 
 #ifndef AVERROR
-// Logs a error-level message.
+// Logs an error-level message.
 #define AVERROR(message, ...) log_output(LOG_LEVEL_ERROR, message, ##__VA_ARGS__);
 #endif
 
 #if LOG_WARN_ENABLED == 1
-// Logs a warn-level message.
+// Logs a warning-level message.
 #define AVWARN(message, ...) log_output(LOG_LEVEL_WARN, message, ##__VA_ARGS__);
 #else
-#define AVWARN(message, ...)
+// Does nothing when LOG_WARN_ENABLED != 1
+#define KAVARN(message, ...)
 #endif
 
 #if LOG_INFO_ENABLED == 1
-// Logs a warn-level message.
+// Logs a info-level message.
 #define AVINFO(message, ...) log_output(LOG_LEVEL_INFO, message, ##__VA_ARGS__);
 #else
+// Does nothing when LOG_INFO_ENABLED != 1
 #define AVINFO(message, ...)
 #endif
 
 #if LOG_DEBUG_ENABLED == 1
-// Logs a warn-level message.
+// Logs a debug-level message.
 #define AVDEBUG(message, ...) log_output(LOG_LEVEL_DEBUG, message, ##__VA_ARGS__);
 #else
+// Does nothing when LOG_DEBUG_ENABLED != 1
 #define AVDEBUG(message, ...)
 #endif
 
 #if LOG_TRACE_ENABLED == 1
-// Logs a warn-level message.
+// Logs a trace-level message.
 #define AVTRACE(message, ...) log_output(LOG_LEVEL_TRACE, message, ##__VA_ARGS__);
 #else
+// Does nothing when LOG_TRACE_ENABLED != 1
 #define AVTRACE(message, ...)
 #endif
