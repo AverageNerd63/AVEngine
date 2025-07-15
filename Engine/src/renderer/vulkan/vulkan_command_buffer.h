@@ -17,7 +17,7 @@ void vulkan_command_buffer_begin(
     b8 is_single_use,
     b8 is_renderpass_continue,
     b8 is_simultaneous_use);
-    
+
 void vulkan_command_buffer_end(vulkan_command_buffer* command_buffer);
 
 void vulkan_command_buffer_update_submitted(vulkan_command_buffer* command_buffer);

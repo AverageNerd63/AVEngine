@@ -11,4 +11,4 @@ void vulkan_framebuffer_create(
     VkImageView* attachments,
     vulkan_framebuffer* out_framebuffer);
 
-    void vulkan_framebuffer_destroy(vulkan_context* context, vulkan_framebuffer* framebuffer);
+void vulkan_framebuffer_destroy(vulkan_context* context, vulkan_framebuffer* framebuffer);

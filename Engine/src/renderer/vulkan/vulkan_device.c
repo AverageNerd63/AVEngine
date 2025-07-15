@@ -63,6 +63,7 @@ b8 vulkan_device_create(vulkan_context* context) {
         queue_create_infos[i].sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
         queue_create_infos[i].queueFamilyIndex = indices[i];
         queue_create_infos[i].queueCount = 1;
+
         // TODO: Enable this for a future enhancement.
         // if (indices[i] == context->device.graphics_queue_index) {
         //     queue_create_infos[i].queueCount = 2;
@@ -135,7 +136,7 @@ b8 vulkan_device_create(vulkan_context* context) {
 
 void vulkan_device_destroy(vulkan_context* context) {
 
-    // Unset Queues
+    // Unset queues
     context->device.graphics_queue = 0;
     context->device.present_queue = 0;
     context->device.transfer_queue = 0;
@@ -148,8 +149,6 @@ void vulkan_device_destroy(vulkan_context* context) {
 
     // Destroy logical device
     AVINFO("Destroying logical device...");
-    context->device.physical_device = 0;
-
     if (context->device.logical_device) {
         vkDestroyDevice(context->device.logical_device, context->allocator);
         context->device.logical_device = 0;
