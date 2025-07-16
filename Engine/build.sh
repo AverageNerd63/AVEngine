@@ -1,30 +1,21 @@
 #!/bin/bash
-# Build script for rebuilding everything
+# Build script for engine
 set echo on
 
-echo "Building everything..."
+mkdir -p ../bin
 
+# Get a list of all the .c files.
+cFilenames=$(find . -type f -name "*.c")
 
-# pushd engine
-# source build.sh
-# popd
-make -f Makefile.engine.linux.mak all
+# echo "Files:" $cFilenames
 
-ERRORLEVEL=$?
-if [ $ERRORLEVEL -ne 0 ]
-then
-echo "Error:"$ERRORLEVEL && exit
-fi
+assembly="engine"
+compilerFlags="-g -shared -fdeclspec -fPIC"
+# -fms-extensions 
+# -Wall -Werror
+includeFlags="-Isrc -I$VULKAN_SDK/include"
+linkerFlags="-lvulkan -lxcb -lX11 -lX11-xcb -lxkbcommon -L$VULKAN_SDK/lib -L/usr/X11R6/lib"
+defines="-D_DEBUG -DAVEXPORT"
 
-# pushd testbed
-# source build.sh
-# popd
-
-make -f Makefile.testbed.linux.mak all
-ERRORLEVEL=$?
-if [ $ERRORLEVEL -ne 0 ]
-then
-echo "Error:"$ERRORLEVEL && exit
-fi
-
-echo "All assemblies built successfully."
+echo "Building $assembly..."
+clang $cFilenames $compilerFlags -o ../bin/lib$assembly.so $defines $includeFlags $linkerFlags

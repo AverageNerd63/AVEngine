@@ -5,7 +5,7 @@
 
 #include "core/logger.h"
 #include "core/input.h"
-#include "core/event.h" 
+#include "core/event.h"
 
 #include "containers/darray.h"
 
@@ -99,7 +99,7 @@ b8 platform_startup(
     if (handle == 0) {
         MessageBoxA(NULL, "Window creation failed!", "Error!", MB_ICONEXCLAMATION | MB_OK);
 
-    AVFATAL("Window creation failed!");
+        AVFATAL("Window creation failed!");
         return FALSE;
     } else {
         state->hwnd = handle;

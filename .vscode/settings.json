@@ -3,12 +3,11 @@
     "xmlTools.enforcePrettySelfClosingTagOnFormat": true,
     "editor.minimap.enabled": false,
     "terminal.integrated.shell.windows": "c:/Program Files/PowerShell/7/pwsh.exe",
-    "terminal.integrated.fontFamily": "Cascadia Mono PL",
     "terminal.integrated.fontWeight": "1",
     "editor.fontFamily": "Liberation Mono",
     "editor.fontSize": 16,
     "editor.fontWeight": "1",
-    "workbench.editor.showTabs": "none",
+    "workbench.editor.showTabs": "single",
     "workbench.colorCustomizations": {
         "editorCursor.foreground": "#00ff33",
         "editor.lineHighlightBackground": "#111144"
@@ -62,14 +61,7 @@
         "iosfwd": "c",
         "tuple": "cpp",
         "utility": "cpp",
-        "avmemory.h": "c",
-        "*.rh": "c",
-        "platform.h": "c",
-        "xlib-xcb.h": "c",
-        "xlib.h": "c",
-        "xlocale": "c",
-        "xstring": "c",
-        "darray.h": "c",
-        "vulkan_swapchain.h": "c"
+        "kmemory.h": "c",
+        "defines.h": "c"
     }
 }

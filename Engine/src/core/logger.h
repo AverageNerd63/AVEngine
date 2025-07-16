@@ -40,7 +40,7 @@ AVAPI void log_output(log_level level, const char* message, ...);
 #define AVWARN(message, ...) log_output(LOG_LEVEL_WARN, message, ##__VA_ARGS__);
 #else
 // Does nothing when LOG_WARN_ENABLED != 1
-#define KAVARN(message, ...)
+#define AVWARN(message, ...)
 #endif
 
 #if LOG_INFO_ENABLED == 1

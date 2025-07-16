@@ -1,6 +1,6 @@
 #include "game.h"
 
-#include "entry.h"
+#include <entry.h>
 
 #include <core/avmemory.h>
 

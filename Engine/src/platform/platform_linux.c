@@ -1,4 +1,4 @@
-#include "platform/platform.h"
+#include "platform.h"
 
 // Linux platform layer.
 #if AVPLATFORM_LINUX
@@ -258,6 +258,7 @@ b8 platform_pump_messages(platform_state* plat_state) {
                 context.data.u16[0] = configure_event->width;
                 context.data.u16[1] = configure_event->height;
                 event_fire(EVENT_CODE_RESIZED, 0, context);
+                
             } break;
 
             case XCB_CLIENT_MESSAGE: {

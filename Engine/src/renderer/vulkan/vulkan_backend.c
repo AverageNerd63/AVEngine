@@ -274,6 +274,7 @@ void vulkan_renderer_backend_shutdown(renderer_backend* backend) {
         vkDestroySurfaceKHR(context.instance, context.surface, context.allocator);
         context.surface = 0;
     }
+
 #if defined(_DEBUG)
     AVDEBUG("Destroying Vulkan debugger...");
     if (context.debug_messenger) {
@@ -281,11 +282,11 @@ void vulkan_renderer_backend_shutdown(renderer_backend* backend) {
             (PFN_vkDestroyDebugUtilsMessengerEXT)vkGetInstanceProcAddr(context.instance, "vkDestroyDebugUtilsMessengerEXT");
         func(context.instance, context.debug_messenger, context.allocator);
     }
+#endif
 
     AVDEBUG("Destroying Vulkan instance...");
     vkDestroyInstance(context.instance, context.allocator);
 }
-#endif
 
 void vulkan_renderer_backend_on_resized(renderer_backend* backend, u16 width, u16 height) {
     // Update the "framebuffer size generation", a counter which indicates when the

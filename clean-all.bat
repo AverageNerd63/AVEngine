@@ -1,7 +1,7 @@
-@echo off
+@ECHO OFF
 REM Clean Everything
 
-ECHO "Cleaning Everything..."
+ECHO "Cleaning everything..."
 
 REM Engine
 make -f "Makefile.engine.windows.mak" clean
